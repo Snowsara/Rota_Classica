@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Permite a rolagem vertical, mas oculta a horizontal */
+}
+
+
+/*Adicionando um overlay escuro */
+.overlay {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    height: 600px;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Mantém a imagem à esquerda e o texto à direita */
+}
+
+.logo h4 {
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Coloca o texto "Fazer login" e "Ou crie uma conta" um abaixo do outro */
+    margin: 0; /* Remove a margem do título */
+    text-align: right; /* Garante que o texto seja alinhado à direita */
+    top: -18px;
+    font-size: 0.9em; /* Mantém o tamanho do texto conforme desejado */
+    color: #000000;
+    font-weight: bold;
+}
+
+.logo h4 span {
+    display: inline-block;
+}
+
+.logo img {
+    width: 50px !important; /* Mantém o tamanho da imagem */
+    margin-right: 10px; /* Adiciona um espaço entre a imagem e o texto */
+    height: auto; 
+}
+
+
+.navbarLogo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+    flex-wrap: wrap;
+}
+
+.navbarLogo img {
+    position: relative;
+    width: 97px;
+    top: -18px;
+    display: block;
+    margin: 0 auto;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 70px;
+    background-color: rgb(43, 42, 42);
+    position: fixed;
+    width: 100%;
+    top: 80px;
+    z-index: 10;
+    flex-wrap: wrap;
+}
+
+
+.nav-links {
+    font-weight: bold;
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    margin-left: 70px;
+    flex-wrap: wrap;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.3em;
+    margin-left: 100px;
+    transition: color 0.3s ease;
+    flex-wrap: wrap;
+}
+
+.nav-links li a:hover {
+    color: #b7c6ee;
+    flex-wrap: wrap;
+}
+
+/* Estilo do slider em tela cheia */
+.slider {
+    top: 80px;
+    left: 0;
+    overflow: hidden; /* Esconde as imagens fora da tela */
+    z-index: -1; /* Coloca o carrossel atrás da navbar */
+    height: 600px; /* Definir altura adequada para o carrossel */
+    position: relative;
+    z-index: 1;
+}
+
+.carrossel-slide {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: calc(100vw * 8); /* Número de imagens + os clones */
+    height: 100%;
+}
+
+.carrossel-slide img {
+    flex-shrink: 0;
+    width: 30vw; /* Cada imagem ocupa 100% da largura da viewport */
+    height: 100vh; /* Cada imagem ocupa 100% da altura da viewport */
+    object-fit: cover; /* Preenche o espaço sem distorção, mas pode cortar um pouco */
+}
+
+/* Contêiner principal para a frase*/
+.main-content {
+    position: relative;
+    top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: auto; /* Remover height 100vh para os cards ficarem fora do slider */
+    text-align: center;
+}
+
+.quadrado {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Largura*/
+    height: 100%;/* Altura*/
+    background-color:  rgb(241, 240, 219);
+    z-index: -1; /* Ficar atrás do texto e cards*/
+    
+}
+
+.titulo {
+    font-weight: bold; /*Deixa o texto em negrito*/
+    font-size: 30px;
+    padding: 25px; /* Define uma distância entre o carrossel e o texto*/
+    /* superior*/
+}
+
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Grelha de 4 colunas */
+    gap: 20px;
+    max-width: 1200px;
+    margin: 50px auto; /* Espaçamento para mover os cards para baixo */
+    transition: 0.5s;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.842);
+    color: black;
+    width: 250px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: 0.5s;
+}
+
+.card img {
+    width: 100%;
+    height: 150px; /* Definir altura para as imagens ficarem proporcionais */
+    object-fit: cover;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.card a {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: 0.5s;
+    outline: none;
+    margin-top: 10px;
+}
+
+.card:hover{
+    margin-top: -15px;
+}

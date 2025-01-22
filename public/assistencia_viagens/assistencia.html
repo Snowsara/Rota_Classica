@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assistência em viagens</title>
+    <link rel="stylesheet" href="../assistencia_viagens/assistencia.css">
+</head>
+<body>
+    <h1>Assistência em Viagens</h1>
+    
+    <div id="map" ></div>
+
+    <input type="text" id="caixaPesquisa" placeholder="Pesquise por serviços ou locais..." oninput="searchNearby()"  
+    onkeydown="if(event.keyCode === 13){ document.getElementById('caixaPesquisa').value = ''; }">
+
+    <div class="overlay"></div> 
+
+    <script src="../assistencia_viagens/assistencia.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0TXvCRXG7DGW8ZaXAwjNhkvR8yOdpEUw&libraries=places,marker&callback=initMap" loading="async" defer></script>
+</body>
+</html>

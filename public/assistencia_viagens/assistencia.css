@@ -1,0 +1,46 @@
+#map {
+    position: relative;
+    height: 500px;
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    margin-left: 4%; /*Move para esquerda*/
+
+}
+
+body {
+    background-image: url('../imagens/FundoAssistenciaViagem.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    background-color: #ffffff;
+
+}
+
+.overlay {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 69px !important;
+    background-color: white;
+    position: absolute;
+    right: -8px;
+    width: 90%;
+    top: 0 !important;
+    z-index: -1;
+    flex-wrap: wrap;
+}
+
+
+#caixaPesquisa {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 16px;
+    position: absolute;
+    top: 20px;
+    left: 70%;
+}
