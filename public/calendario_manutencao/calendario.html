@@ -4,24 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../calendario_manutencao/calendario.css">
-    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
     <title>Calendário de Manutenção</title>
 </head>
 <body>
-    <h1>CALÉNDARIO DE MANUTENÇÃO</h1>
-    <div id="calendar"></div>
-
-    <div class="maintenance-info">
-        <h2>Manutenções Agendadas:</h2>
-
-        <div class="maintenance-item">
-            <strong>Troca de óleo:</strong> <br>
-            Data: 15 de fevereio 2025 <br>
-            Veículo: Harley-Davidson Sportster 
+    <div class="container">
+        <div class="header">
+            <div class="titulo">Cadastro de Veículo</div>
+        </div>
+        <form id="veiculoForm">
+            <div class="form-grupo">
+               <label for="veiculoTipo">Tipo do veiculo</label>
+               <select id="veiculoTipo" required>
+                    <option value="">Selecione</option>
+                    <option value="carro">Carro</option>
+                    <option value="moto">Moto</option>
+               </select>
+              
+               <label for="veiculoNome">Marca e nome do veículo</label>
+               <input type="text" id="veiculoNome" placeholder="Exemplo: Volkswagen Fusca" required>
+               
+               <label for="veiculoAno">Ano do veículo</label>
+               <input type="text" id="veiculoAno" placeholder="Exemplo: 1970" required>
+               
+               <label for="quilometragem">Quilometragem do veículo</label>
+               <input type="number" id="quilometragem" placeholder="Exemplo: 15.032 km" required>
+            </div>
+                
+            <div class="form-grupo">
+                <label for="lastMaintenance">Data da última manutenção</label>
+                <input type="date" id="lastMaintenance" required>
+            </div>
+        
+            <div class="form-grupo">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+        
+            <div class="form-grupo">
+                <button type="submit">Cadastrar</button>
+            </div>
+        </form>
+        
+        <div class="calendario" id="calendario" style="display: none;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>seg.</th>
+                        <th>ter.</th>
+                        <th>qua.</th>
+                        <th>qui.</th>
+                        <th>sex.</th>
+                        <th>sáb.</th>
+                        <th>dom.</th>
+                    </tr>
+                </thead>
+        
+                <tbody id="calendarioBody">
+                    <!-- Os dias do calendário serão gerados aqui-->
+                </tbody>
+            </table>
         </div>
     </div>
 
-    <button class="add-maintenance-btn">Adicionar Nova Manutenção</button>
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
+    <script src="../calendario_manutencao/calendario.js"></script>
 </body>
 </html>

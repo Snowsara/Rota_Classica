@@ -1,10 +1,118 @@
 body {
+    font-family: sans-serif;
+    background-color: #f5f5f5;
     margin: 0;
-    padding: 20px;
-    background-color: #f4f4f4;
+    padding: 0;
 }
 
-h1 {
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.header .titulo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.form-grupo {
+    margin-bottom: 15px;
+}
+
+.form-grupo label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-grupo input, .form-grupo select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.form-grupo button {
+    background-color: #d00;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.calendario {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.calendario table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.calendario th, .calendario td {
+    border: 1px solid #ddd;
+    padding: 10px;
     text-align: center;
-    color: #000000;
+}
+
+.calendario th {
+    background-color: #f5f5f5;
+    color: #666;
+}
+
+.calendario td {
+    height: 100px;
+    vertical-align: top;
+    position: relative;
+}
+
+.calendario .day-number {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 14px;
+    color: #d00;
+}
+
+.calendario .maintenance {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #000;
+}
+
+@media (max-width: 768px){
+    .header{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .calendario th, .calendario td {
+        padding: 5px;
+    }
+
+    .calendario .day-number {
+        font-size: 12px;
+    }
+
+    .calendario .maintenance {
+        font-size: 10px;
+    }
 }
