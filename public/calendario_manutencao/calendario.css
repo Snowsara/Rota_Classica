@@ -116,3 +116,21 @@ body {
         font-size: 10px;
     }
 }
+
+#calendarHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+#prevMonth, #nextMonth {
+    cursor: pointer;
+    font-size: 1.5em;
+}
+
+.day-number{
+    color: red;
+    font-weight: bold;
+}
