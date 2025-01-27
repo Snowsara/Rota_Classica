@@ -1,9 +1,9 @@
 const express = require('express');
 const path = require('path');
 const connection = require('./database'); 
-
 // Criação do app usando o Express
 const app = express();
+app.use(express.json()); //Necessário para fazer o parsing do corpo d requisiçõs POST com JSON
 
 // Definir a porta onde o servidor será executado
 const port = 3000;
@@ -72,6 +72,66 @@ app.post('/eventos', (res, req) => {
     });
 });
 
+app.post('calendario', (req, res) => {
+    const {tp_viculo, nm_veiculo, an_veiculo, km_veiculo, dt_utima_manutencao, ds_email} = req.body;
+
+    //Validar os dados recebidos
+    if (!tp_viculo || !nm_veiculo || !an_veiculo || isNaN(km_veiculo) || !dt_utima_manutencao || !ds_email){
+        res.status(400).send('Todos os campos são obrigatórios');
+        return;
+    }
+
+    //Inserindo no banco de dados
+    const sql = 'INSERT INTO T_MANUTENCAO (tp_veiculo, nm_veiculo, an_veiculo, km_veiculo, dt_utima_manutencao, ds_email) VALUES (?, ?, ?, ?, ?, ?)';
+    connection.query(sql, [tp_viculo, nm_veiculo, an_veiculo, km_veiculo, dt_utima_manutencao, ds_email], (err, results) => {
+        if (err){
+            console.error('Error ao inserir manutenção:', err);
+            res.status(500).send('Erro ao inserir manutenção');
+            return
+        }
+
+        //Calcular as datas de manutenção
+        const maintenanceInterval = getMaintenanceInterval(tp_viculo, km_veiculo);
+        const maintenanceDates = calculateMaintenanceDates(new Date(dt_utima_manutencao), maintenanceInterval);
+
+        //Enviar as datas de manutenção para o front-end
+        res.json({ message: 'Manutenção inserida com sucesso', maintenanceDates});
+    });
+});
+
+//Funções de cáculo 
+function getMaintenanceInterval(veiculoTipo, quilometragem){
+    //Definindo intervalos de manutenção com base na quilometragem carro e moto
+    if (veiculoTipo === 'carro'){
+        if (quilometragem <= 5000){
+            return 60; //Intervalos maiores para quilometragem baixa
+        }else if (quilometragem <= 10000){
+            return 30; //Intervalos menores para quilometragem alta
+        }else {
+            return 15; //Para carros com quilometragem bem alta
+        }
+    }else if (veiculoTipo === 'moto'){
+        if (quilometragem <= 5000){
+            return 30; //Intervalos maiores para quilometragem baixa
+        }else if (quilometragem <= 10000){
+            return 15; //Intervalos menores para quilometragem alta
+        }else {
+            return 7; //Para motos com quilometragem muito alta
+        }
+    }else {
+        return 30; //Intervalo padrão caso não seja carro nem moto
+    }
+}
+
+function calculateMaintenanceDates(lastMaintenance, interval){
+    const dates = [];
+    let currentDate = new Date(lastMaintenance);
+    for (let i = 0; i < 12; i++){
+        currentDate.setDate(currentDate.getDate() + interval);
+        dates.push(new Date(currentDate));
+    }
+    return dates;
+}
 
 // Iniciar o servidor
 app.listen(port, () => {

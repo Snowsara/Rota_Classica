@@ -5,34 +5,60 @@ let maintenanceDates = [];
 let veiculoTipo = "";
 let quilometragem = 0;
 
-document.getElementById('veiculoForm').addEventListener('submit', function(event){
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', function(){
 
-    const veiculoTipo = document.getElementById('veiculoTipo').value;
-    const veiculoNome = document.getElementById('veiculoNome').value;
-    const veiculoAno = document.getElementById('veiculoAno').value;
-    const quilometragem = Number(document.getElementById('quilometragem').value);
-    const lastMaintenance = new Date(document.getElementById('lastMaintenance').value);
-    const email = document.getElementById('email').value;
+    document.getElementById('veiculoForm').addEventListener('submit', function(event){
+        event.preventDefault();
+    
+        veiculoTipo = document.getElementById('veiculoTipo').value;
+        const veiculoNome = document.getElementById('veiculoNome').value;
+        const veiculoAno = document.getElementById('veiculoAno').value;
+        quilometragem = Number(document.getElementById('quilometragem').value);
+        const lastMaintenance = document.getElementById('lastMaintenance').value; //no formato string
+        const email = document.getElementById('email').value;
+    
+        if (!veiculoTipo || !veiculoNome || !veiculoAno || isNaN(quilometragem) 
+            || !lastMaintenance || !email
+        ){
+            alert('Todos os campos são obrigatórios e a quilometragem deve ser válida.');
+            return;
+        }
+    
+        //Enviar os dados ao servidor
+        fetch('/calendario', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }, 
+            body: JSON.stringify({
+                tp_veiculo: veiculoTipo,
+                nm_veiculo: veiculoNome,
+                an_veiculo: veiculoAno,
+                km_veiculo: quilometragem,
+                dt_ultima_manutencao: lastMaintenance,
+                ds_email: email 
+            })
+        })
+        .then(response => response.text()) // Primeiro converte para texto
+        .then(data => {
+            console.log('Resposta do servidor:', data); // Verifique a resposta aqui
+            const parsedData = JSON.parse(data); // Depois faz o parse se for JSON válido
+            maintenanceDates = parsedData.maintenanceDates.map(dateString => new Date(dateString));
+            displayCalendario(maintenanceDates, veiculoTipo, quilometragem);
+        })
 
-    if (!veiculoTipo || !veiculoNome || !veiculoAno || isNaN(quilometragem) 
-        || !lastMaintenance || !email
-    ){
-        alert('Todos os campos são obrigatórios e a quilometragem deve ser válida.');
-        return;
-    }
-
-    const maintenanceInterval = getMaintenanceInterval(veiculoTipo, quilometragem);
-    const maintenanceDates = calculateMaintenanceDates(lastMaintenance, maintenanceInterval);
-    displayCalendario(maintenanceDates, veiculoTipo, quilometragem);
-
-    document.getElementById('calendario').style.display = 'block';
-
-    //Limpar os campos do formulário
-    document.querySelectorAll('#veiculoForm input, #veiculoForm select').forEach(input => {
-        input.value = "";
+        document.getElementById('calendario').style.display = 'block';
+    
+        //Limpar os campos do formulário
+        document.querySelectorAll('#veiculoForm input, #veiculoForm select').forEach(input => {
+            input.value = "";
+        });
+    
+    })
+    .catch(err => {
+        console.error('Erro ao enviar os dados:', err);
+        alert('Ocorreu um erro ao enviar os dados.');
     });
-
 });
 
 function getMaintenanceInterval(veiculoTipo, quilometragem){
@@ -90,7 +116,7 @@ function getMotoMaintenance(quilometragem){
     }
 }
 
-function displayCalendario(maintenanceDates, veiculoTipo, quilometragem){
+function displayCalendario(maintenanceDates, veiculoTipoGlobal, quilometragemGlobal){
     const calendarioBody = document.getElementById('calendarioBody');
     calendarioBody.innerHTML = "";
 
@@ -155,10 +181,10 @@ function displayCalendario(maintenanceDates, veiculoTipo, quilometragem){
             maintenanceDiv.className = 'maintenance';
 
             let maintenanceDescription;
-            if (veiculoTipo === 'carro'){
-                maintenanceDescription = getCarMaintenance(quilometragem).join(' e ');
-            }else if (veiculoTipo === 'moto'){
-                maintenanceDescription = getMotoMaintenance(quilometragem).join(' e ');
+            if (veiculoTipoGlobal === 'carro'){
+                maintenanceDescription = getCarMaintenance(quilometragemGlobal).join(' e ');
+            }else if (veiculoTipoGlobal === 'moto'){
+                maintenanceDescription = getMotoMaintenance(quilometragemGlobal).join(' e ');
             }
                 
             maintenanceDiv.textContent = `Manutenção: ${maintenanceDescription}`;
