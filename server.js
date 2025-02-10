@@ -72,18 +72,19 @@ app.post('/eventos', (res, req) => {
     });
 });
 
-app.post('calendario', (req, res) => {
-    const {tp_viculo, nm_veiculo, an_veiculo, km_veiculo, dt_utima_manutencao, ds_email} = req.body;
+/*
+app.post('/calendario', (req, res) => {
+    const {tp_veiculo, nm_veiculo, an_veiculo, km_veiculo, dt_ultima_manutencao, ds_email} = req.body;
 
     //Validar os dados recebidos
-    if (!tp_viculo || !nm_veiculo || !an_veiculo || isNaN(km_veiculo) || !dt_utima_manutencao || !ds_email){
+    if (!tp_veiculo || !nm_veiculo || !an_veiculo || isNaN(km_veiculo) || !dt_ultima_manutencao || !ds_email){
         res.status(400).send('Todos os campos são obrigatórios');
         return;
     }
 
     //Inserindo no banco de dados
     const sql = 'INSERT INTO T_MANUTENCAO (tp_veiculo, nm_veiculo, an_veiculo, km_veiculo, dt_utima_manutencao, ds_email) VALUES (?, ?, ?, ?, ?, ?)';
-    connection.query(sql, [tp_viculo, nm_veiculo, an_veiculo, km_veiculo, dt_utima_manutencao, ds_email], (err, results) => {
+    connection.query(sql, [tp_veiculo, nm_veiculo, an_veiculo, km_veiculo, dt_ultima_manutencao, ds_email], (err, results) => {
         if (err){
             console.error('Error ao inserir manutenção:', err);
             res.status(500).send('Erro ao inserir manutenção');
@@ -91,8 +92,8 @@ app.post('calendario', (req, res) => {
         }
 
         //Calcular as datas de manutenção
-        const maintenanceInterval = getMaintenanceInterval(tp_viculo, km_veiculo);
-        const maintenanceDates = calculateMaintenanceDates(new Date(dt_utima_manutencao), maintenanceInterval);
+        const maintenanceInterval = getMaintenanceInterval(tp_veiculo, km_veiculo);
+        const maintenanceDates = calculateMaintenanceDates(new Date(dt_ultima_manutencao), maintenanceInterval);
 
         //Enviar as datas de manutenção para o front-end
         res.json({ message: 'Manutenção inserida com sucesso', maintenanceDates});
@@ -131,7 +132,7 @@ function calculateMaintenanceDates(lastMaintenance, interval){
         dates.push(new Date(currentDate));
     }
     return dates;
-}
+}*/
 
 // Iniciar o servidor
 app.listen(port, () => {

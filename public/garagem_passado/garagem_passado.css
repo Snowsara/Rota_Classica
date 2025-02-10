@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Permite a rolagem vertical, mas oculta a horizontal */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Mantém a imagem à esquerda e o texto à direita */
+}
+
+.logo h4 {
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Coloca o texto "Fazer login" e "Ou crie uma conta" um abaixo do outro */
+    margin: 0; /* Remove a margem do título */
+    text-align: right; /* Garante que o texto seja alinhado à direita */
+    top: -18px;
+    font-size: 0.9em; /* Mantém o tamanho do texto conforme desejado */
+    color: #000000;
+    font-weight: bold;
+}
+
+.logo h4 span {
+    display: inline-block;
+}
+
+.logo img {
+    width: 50px !important; /* Mantém o tamanho da imagem */
+    margin-right: 10px; /* Adiciona um espaço entre a imagem e o texto */
+    height: auto; 
+}
+
+
+.navbarLogo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+    flex-wrap: wrap;
+}
+
+.navbarLogo img {
+    position: relative;
+    width: 97px;
+    top: -18px;
+    display: block;
+    margin: 0 auto;
+}
+
+section{
+    padding: 54px 0;
+}
+
+h1{
+    font-size: 50px;
+}
+
+p{
+    color: #0000009c;
+}
+
+.container{
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.banner{
+    display: flex;
+    justify-content: center;
+}
+
+.banner .banner-text{
+    margin: 150px;
+    text-align: center;
+    padding: 0 90px;
+}
+
+.quadrado {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Largura*/
+    height: 100%;/* Altura*/
+    background-color:  rgb(236, 236, 225);
+    z-index: -1; /* Ficar atrás do texto e cards*/
+    
+}

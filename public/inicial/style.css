@@ -110,6 +110,14 @@ body {
     flex-wrap: wrap;
 }
 
+/*menu mobile*/
+.nav .menu-icon{
+    cursor: pointer;
+    font-size: 25px;
+    color: white;
+    display: none;
+}
+
 /* Estilo do slider em tela cheia */
 .slider {
     top: 80px;
