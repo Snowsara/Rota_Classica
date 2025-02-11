@@ -1,9 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     font-family: sans-serif;
     margin: 0;
@@ -11,38 +5,9 @@ body {
     overflow-x: hidden; /* Permite a rolagem vertical, mas oculta a horizontal */
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Mantém a imagem à esquerda e o texto à direita */
-}
-
-.logo h4 {
-    position: relative;
-    display: flex;
-    flex-direction: column; /* Coloca o texto "Fazer login" e "Ou crie uma conta" um abaixo do outro */
-    margin: 0; /* Remove a margem do título */
-    text-align: right; /* Garante que o texto seja alinhado à direita */
-    top: -18px;
-    font-size: 0.9em; /* Mantém o tamanho do texto conforme desejado */
-    color: #000000;
-    font-weight: bold;
-}
-
-.logo h4 span {
-    display: inline-block;
-}
-
-.logo img {
-    width: 50px !important; /* Mantém o tamanho da imagem */
-    margin-right: 10px; /* Adiciona um espaço entre a imagem e o texto */
-    height: auto; 
-}
-
-
 .navbarLogo {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 20px 50px;
     background-color: white;
@@ -50,52 +15,93 @@ body {
     width: 100%;
     top: 0;
     z-index: 10;
-    flex-wrap: wrap;
 }
 
 .navbarLogo img {
     position: relative;
-    width: 97px;
-    top: -18px;
+    width: 100px;
+    top: -9px;
     display: block;
     margin: 0 auto;
 }
 
-section{
-    padding: 54px 0;
-}
-
-h1{
-    font-size: 50px;
-}
-
-p{
-    color: #0000009c;
-}
-
-.container{
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.banner{
+.logo {
     display: flex;
+    align-items: center;
+    margin-left: 40px;
+    gap: 40px;
+}
+
+.logo h4 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    text-align: right;
+    color: #000000;
+    font-weight: bold;
+    top: -9px;
+}
+
+.logo img {
+    width: 50px !important; /* Mantém o tamanho da imagem */
+    margin-right: 70px; /* Adiciona um espaço entre a imagem e o texto */
+    height: auto; 
+    top: -9px;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-}
-
-.banner .banner-text{
-    margin: 150px;
+    align-items: center;
     text-align: center;
-    padding: 0 90px;
+    padding: 100px 20px;
+    color: white;
+    position: relative;
+    background: linear-gradient(90deg,  rgb(192, 142, 56), #C58718ff, rgb(184, 142, 71));
+    height: 500px;
 }
 
-.quadrado {
+.hero-content {
+    z-index: 1;
+    margin-top: 300px;
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    margin-top: -20px;
+}
+
+.hero span {
+    font-style: italic;
+    font-size: 1.2em;
+}
+
+/* Onda SVG na parte inferior do background */
+.wave {
     position: absolute;
-    top: 0;
+    bottom: -2px;
     left: 0;
-    width: 100%; /* Largura*/
-    height: 100%;/* Altura*/
-    background-color:  rgb(236, 236, 225);
-    z-index: -1; /* Ficar atrás do texto e cards*/
-    
+    width: 100%;
+    height: auto;
+    z-index: 0;
+}
+
+.hero-image {
+    /*margin-top: 100px;  Ajuste para que a imagem fique sobre a onda */
+    z-index: 1;
+}
+
+.hero-image img {
+    width: 700px;
+    margin-top: 100px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6); /* Adiciona uma leve sombra */
 }
