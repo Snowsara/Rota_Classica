@@ -137,30 +137,38 @@ h2 {
 }
 
 .gallery {
-    display: flex;
-    grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    grid-template-columns: repeat(3, auto); /*Três colunas*/
     justify-content: center;
     gap: 20px;
     margin-bottom: 40px;
 }
 
 .gallery-item {
-    text-align: center;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgb(0, 0, 0, 0.1);
-    margin: 0 auto;
+    position: relative;
+    max-width: 220px;
 }
 
 .gallery-item img {
     width: 100%;
-    max-width: 300px;
-    border-radius: 5px;
+    height: 100%;
+    border-radius: 8px;
+    object-fit: cover;
 }
 
-.gallery-item h3 {
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    text-align: center;
+    padding: 9px;
+    border-radius: 0 0 8px 8px; /*Arredondar a parte debaixo*/
+}
+
+h3 {
+    margin: 0;
     font-size: 16px;
-    margin-top: 10px;
-    color: #555;
 }
